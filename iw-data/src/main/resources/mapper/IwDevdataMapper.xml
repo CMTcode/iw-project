@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xmlsj.iwdata.mapper.IwDevdataMapper">
+
+    <resultMap id="BaseResultMap" type="top.xmlsj.iwdata.entity.IwDevdata">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="devNo" column="devNo" jdbcType="VARCHAR"/>
+            <result property="fileName" column="fileName" jdbcType="VARCHAR"/>
+            <result property="dataValue" column="dataValue" jdbcType="DOUBLE"/>
+            <result property="batteryLevel" column="batteryLevel" jdbcType="VARCHAR"/>
+            <result property="signalStrength" column="signalStrength" jdbcType="VARCHAR"/>
+            <result property="updateDateTime" column="updateDateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,devNo,fileName,
+        dataValue,batteryLevel,signalStrength,
+        updateDateTime
+    </sql>
+</mapper>
