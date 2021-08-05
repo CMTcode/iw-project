@@ -20,13 +20,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2// 开启Swagger2的自动配置
 public class Swagger2Config {
     @Bean
-    public Docket createRestApi() {
-//        Profiles of = Profiles.of("dev", "test");
-//        // 判断当前是否处于该环境
-//        // 通过 enable() 接收此参数判断是否要显示
-//        boolean b = environment.acceptsProfiles(of);
+    public Docket createRestApi(Environment environment) {
+        Profiles of = Profiles.of("dev", "test");
+        // 判断当前是否处于该环境
+        // 通过 enable() 接收此参数判断是否要显示
+        boolean b = environment.acceptsProfiles(of);
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .enable(b)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("top.xmlsj.iwdata.controller"))
                 .paths(PathSelectors.any())
