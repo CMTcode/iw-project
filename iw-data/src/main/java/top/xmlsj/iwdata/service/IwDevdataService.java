@@ -12,7 +12,7 @@ public interface IwDevdataService extends IService<IwDevdata> {
     /**
      * 插入数据
      * @return
-     * @param WaterMeterMeterInfo
+     * @param waterMeterMeterInfo
      */
     boolean insertData(@Param("waterMeterMeterInfo") WaterMeterMeterInfo waterMeterMeterInfo);
 }

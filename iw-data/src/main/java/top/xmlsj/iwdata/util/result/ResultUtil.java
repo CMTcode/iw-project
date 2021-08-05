@@ -11,15 +11,15 @@ public class ResultUtil {
 
     private Integer state;
 
-    private Object msg;
+    private String msg;
 
     private Object err;
 
-    public static Object defaultSucceedResult(Object msg){
+    public static ResultUtil defaultSucceedResult(String msg){
         return new ResultUtil(200,msg,null);
     }
 
-    public static Object defaultFailResult(Object msg,Object err){
+    public static ResultUtil defaultFailResult(String msg,Object err){
         return new ResultUtil(409,msg,err);
     }
 }

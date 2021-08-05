@@ -8,6 +8,7 @@ import top.xmlsj.iwdata.entity.models.WaterMeterMeterInfo;
 import top.xmlsj.iwdata.service.IwDevdataService;
 import top.xmlsj.iwdata.mapper.IwDevdataMapper;
 import org.springframework.stereotype.Service;
+import top.xmlsj.iwdata.util.numUtil.NumUtils;
 
 /**
  *
@@ -21,15 +22,19 @@ public class IwDevdataServiceImpl extends ServiceImpl<IwDevdataMapper, IwDevdata
 
     @Override
     public boolean insertData(WaterMeterMeterInfo waterMeterMeterInfo) {
-        DeviceData deviceData = waterMeterMeterInfo.getDeviceData();
-        IwDevdata devData = new IwDevdata();
-        devData.setDevNo(waterMeterMeterInfo.getDevNo());
-        devData.setDataValue(Double.valueOf(deviceData.getDataValue1()));
-        devData.setBatteryLevel(deviceData.getBatteryLevel());
-        devData.setSignalStrength(deviceData.getSignalStrength());
-        devData.setFileName(deviceData.getFileName());
-        devData.setUpdateDateTime(deviceData.getUpdateDateTime());
-       return iwDevdataMapper.insert(devData) > 0;
+//        判断DataValue1是否是数字 是数字才能转
+        if (NumUtils.isNumeric(waterMeterMeterInfo.getDeviceData().getDataValue1())) {
+            DeviceData deviceData = waterMeterMeterInfo.getDeviceData();
+            IwDevdata devData = new IwDevdata();
+            devData.setDevNo(waterMeterMeterInfo.getDevNo());
+            devData.setDataValue(Double.valueOf(deviceData.getDataValue1()));
+            devData.setBatteryLevel(deviceData.getBatteryLevel());
+            devData.setSignalStrength(deviceData.getSignalStrength());
+            devData.setFileName(deviceData.getFileName());
+            devData.setUpdateDateTime(deviceData.getUpdateDateTime());
+            return iwDevdataMapper.insert(devData) > 0;
+        }
+        return false;
     }
 }
 
